@@ -1,5 +1,5 @@
-const CONFIG = {
-    tasa: 6000, 
+let CONFIG = {
+    tasa: 520, 
     whatsapp: "584162342319"
 };
 

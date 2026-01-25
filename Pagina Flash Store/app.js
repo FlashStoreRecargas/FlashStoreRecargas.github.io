@@ -1,5 +1,5 @@
 const CONFIG = {
-    tasa: 520, 
+    tasa: 6000, 
     whatsapp: "584162342319"
 };
 

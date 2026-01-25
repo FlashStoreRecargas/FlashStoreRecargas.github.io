@@ -1,8 +1,3 @@
-let CONFIG = {
-    tasa: 540, 
-    whatsapp: "584162342319"
-};
-
 const CATALOGO = {
     Free: [
         { nombre: "110 💎", usd: 1.00 },

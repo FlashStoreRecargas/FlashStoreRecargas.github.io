@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Store ⚡ | Recargas Instantáneas</title>
+    <link rel="stylesheet" href="estillos.css">
+    <link rel="shortcut icon" href="https://fonts.gstatic.com/s/e/notoemoji/16.0/1fa99/32.png" type="image/x-icon">
+</head>
+<body>
+
+    <header>
+        <div class="logo">FLASH STORE ⚡</div>
+    </header>
+
+    <div class="container">
+        <div class="card info-pago">
+            <h3>💳 Datos de Pago Móvil</h3>
+            <p><b>Banco:</b> 0102 Venezuela</p>
+            <p><b>C.I:</b> 32.187.877</p>
+            <p><b>Teléfono:</b> 04162342319</p>
+        </div>
+
+        <div class="card">
+            <h2>Panel de Recargas</h2>
+            <form id="orderForm">
+                
+                <div class="form-group">
+                    <label>Tipo de Juego o Servicio</label>
+                    <select id="categoria" onchange="cambiarProductos()">
+                        <option value="Free">Free Fire</option>
+                        <option value="Blood">Blood Strike</option>
+                        <option value="Delta">Delta Force</option>
+                        <option value="Roblox">Roblox</option>
+                        <option value="Plataformas">Plataformas (Netflix, Spotify, etc)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Selecciona el Producto</label>
+                    <select id="producto" onchange="calcularTotal()">
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <label>ID del Jugador o Correo de Cuenta</label>
+                    <input type="text" id="userID" placeholder="Ej: 12345678 o usuario@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Referencia de Pago</label>
+                    <input type="text" id="referencia" placeholder="Últimos 6 dígitos" required>
+                </div>
+
+                <div class="resumen-pago">
+                    <span>Total a Transferir:</span>
+                    <span class="precio-grande"><span id="totalBs">0,00</span> Bs</span>
+                    <small>Tasa: <span id="tasaValue"></span> Bs/$</small>
+                </div>
+
+                <button type="button" class="btn-ws" onclick="enviarWhatsApp()">
+                    🚀 Enviar Pedido vía WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 Flash Store ⚡ - Tu rapidez es nuestra meta.</footer>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+:root {
+    --primary: #faf5dc; /* Morado Eléctrico */
+    --accent: #faf5dc; /* Dorado Flash */
+    --bg: #0a0a0c;
+    --card: #16161a;
+    --text: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding-bottom: 50px;
+}
+
+header {
+    background: linear-gradient(135deg, #00D4FF 0%, #002B4F 70%);
+    padding: 30px;
+    text-align: center;
+    border-bottom: 3px solid #faf5dc;
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #faf5dc;
+}
+
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.card {
+    background: var(--card);
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #2d2d35;
+}
+
+.info-pago {
+    border: 1px dashed var(--accent);
+    background: rgba(255, 158, 0, 0.05);
+}
+
+.info-pago h3 { color: var(--accent); margin-top: 0; }
+.info-pago p { margin: 5px 0; font-size: 0.9rem; }
+
+h2 { color: var(--primary); text-align: center; }
+
+.form-group { margin-bottom: 15px; }
+label { display: block; margin-bottom: 5px; font-size: 0.85rem; color: #aaa; }
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    background: #25252b;
+    border: 1px solid #3d3d45;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.resumen-pago {
+    background: #002B4F;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid var(--primary);
+}
+
+.precio-grande {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.btn-ws {
+    width: 100%;
+    background: #20b958;
+    color: white;
+    border: none;
+    padding: 18px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.btn-ws:hover { transform: scale(1.02); background: #20ba5a; }
+
+footer { text-align: center; color: #555; font-size: 0.8rem; }

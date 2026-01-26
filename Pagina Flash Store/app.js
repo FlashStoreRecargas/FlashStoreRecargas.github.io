@@ -91,6 +91,7 @@ function enviarWhatsApp() {
     const cat = document.getElementById('categoria').value;
     const prod = document.getElementById('producto').value;
     const id = document.getElementById('userID').value;
+    const nick = document.getElementById('playerNick').value;
     const ref = document.getElementById('referencia').value;
     const total = document.getElementById('totalBs').innerText;
 
@@ -100,6 +101,7 @@ function enviarWhatsApp() {
                   `📂 *Categoría:* ${cat}%0A` +
                   `📦 *Producto:* ${prod}%0A` +
                   `🆔 *Usuario/ID:* ${id}%0A` +
+                  `👤 *Nick:* ${nick}%0A` +
                   `💳 *Ref. Pago:* ${ref}%0A` +
                   `🇻🇪 *Monto:* ${total} Bs%0A%0A` +
                   `🚀 _¡Gracias por tu preferencia!_`;

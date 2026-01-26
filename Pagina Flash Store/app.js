@@ -71,11 +71,20 @@ const CATALOGO = {
         { nombre: "TikTok Coins (17500)", usd: 272.47 }
     ],
 
+    Netflix: [
+        { nombre: "Netflix - Plan Basico - 1 Pantalla", usd: 3.99 },
+        { nombre: "Netflix - Plan Estandar - 2 Pantallas", usd: 5.99 },
+        { nombre: "Netflix - Plan Premium - 4 Pantallas", usd: 7.99 }
+    ],
+
+    Disney+: [
+        { nombre: "Disney+ - Plan Estandar - 2 Pantallas", usd: 12.49 },
+        { nombre: "Disney+ - PLan Premium - 4 Pantallas", usd: 17.99 }
+    ],
+
     Plataformas: [
-        { nombre: "Netflix - 1 Pantalla", usd: 4.00 },
         { nombre: "Spotify Premium", usd: 6.50 },
         { nombre: "YouTube Premium", usd: 14.00 },
-        { nombre: "Disney+ / Star+", usd: 7.00 },
         { nombre: "Canva Pro (Mensual)", usd: 6.50 },
     ]
 };

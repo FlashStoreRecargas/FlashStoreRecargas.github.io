@@ -50,13 +50,24 @@ const CATALOGO = {
         { nombre: "22.000 robux​", usd: 200.00 },
         { nombre: "Roblox Premium​", usd: 10.00 }
     ],
+
+    TTC: [
+        { nombre: "TikTok Coins (05)", usd: 0.08 },
+        { nombre: "TikTok Coins (70)", usd: 1.09 },
+        { nombre: "TikTok Coins (350)", usd: 5.45 },
+        { nombre: "TikTok Coins (700)", usd: 10.91 },
+        { nombre: "TikTok Coins (1400)", usd: 21.80 },
+        { nombre: "TikTok Coins (3500)", usd: 54.50 },
+        { nombre: "TikTok Coins (7000)", usd: 108.99 },
+        { nombre: "TikTok Coins (17500)", usd: 272.47 }
+    ],
+
     Plataformas: [
         { nombre: "Netflix - 1 Pantalla", usd: 4.00 },
         { nombre: "Spotify Premium", usd: 6.50 },
         { nombre: "YouTube Premium", usd: 14.00 },
         { nombre: "Disney+ / Star+", usd: 7.00 },
         { nombre: "Canva Pro (Mensual)", usd: 6.50 },
-        { nombre: "TikTok Coins (70)", usd: 1.20 }
     ]
 };
 

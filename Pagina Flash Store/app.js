@@ -51,6 +51,15 @@ const CATALOGO = {
         { nombre: "Roblox Premium​", usd: 10.00 }
     ],
 
+    RC: [
+        { nombre: "20 Rio Coins", usd: 3.99 },
+        { nombre: "30 Rio Coins", usd: 5.99 },
+        { nombre: "53 Rio Coins", usd: 9.99 },
+        { nombre: "110 Rio Coins", usd: 19.99 },
+        { nombre: "285 Rio Coins", usd: 49.99 },
+        { nombre: "600 Rio Coins", usd: 99.99 },
+    ],
+
     TTC: [
         { nombre: "TikTok Coins (05)", usd: 0.08 },
         { nombre: "TikTok Coins (70)", usd: 1.09 },

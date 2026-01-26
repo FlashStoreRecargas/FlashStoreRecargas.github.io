@@ -65,6 +65,23 @@ document.addEventListener('DOMContentLoaded', () => {
     cambiarProductos(); // Carga inicial
 });
 
+function copiarTodo() {
+    const info = `DATOS FLASH STORE ⚡\nBanco: 0102 Venezuela\nCI: 32187877\nTelf: 04162342319`;
+    
+    navigator.clipboard.writeText(info).then(() => {
+        // Mostrar aviso visual
+        const toast = document.createElement('div');
+        toast.className = 'toast-copy';
+        toast.innerText = '✅ Datos copiados al portapapeles';
+        document.body.appendChild(toast);
+
+        // Borrar aviso después de 2 segundos
+        setTimeout(() => {
+            toast.remove();
+        }, 2000);
+    });
+}
+
 function cambiarProductos() {
     const cat = document.getElementById('categoria').value;
     const prodSelect = document.getElementById('producto');

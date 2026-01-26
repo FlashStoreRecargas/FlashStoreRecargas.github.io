@@ -78,9 +78,8 @@ const CATALOGO = {
     ],
 
     Disney+: [
-        { nombre: "Netflix - Plan Basico - 1 Pantalla", usd: 3.99 },
-        { nombre: "Netflix - Plan Estandar - 2 Pantallas", usd: 5.99 },
-        { nombre: "Netflix - Plan Premium - 4 Pantallas", usd: 7.99 }
+        { nombre: "Disney+ - Plan Estandar - 2 Pantallas", usd: 12.49 },
+        { nombre: "Disney+ - PLan Premium - 4 Pantallas", usd: 17.99 }
     ],
 
     Plataformas: [

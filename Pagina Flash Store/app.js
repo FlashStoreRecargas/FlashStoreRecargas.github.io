@@ -100,7 +100,7 @@ function enviarWhatsApp() {
     const texto = `⚡ *NUEVA COMPRA - FLASH STORE* ⚡%0A%0A` +
                   `📂 *Categoría:* ${cat}%0A` +
                   `📦 *Producto:* ${prod}%0A` +
-                  `🆔 *Usuario/ID:* ${id}%0A` +
+                  `🆔 *ID/Correo:* ${id}%0A` +
                   `👤 *Nick:* ${nick}%0A` +
                   `💳 *Ref. Pago:* ${ref}%0A` +
                   `🇻🇪 *Monto:* ${total} Bs%0A%0A` +

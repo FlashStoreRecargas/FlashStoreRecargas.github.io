@@ -7,7 +7,7 @@ const CATALOGO = {
         { nombre: "1166 💎", usd: 10.00 },
         { nombre: "2398 💎", usd: 20.00 },
         { nombre: "6160 💎", usd: 50.00 },
-        { nombre: "Paquete de Nivel 📦​​", usd: 4.00 },
+        { nombre: "Paquete de Nivel 📦​​", usd: 4.25 },
         { nombre: "Tarjeta Basica 💳​", usd: 0.50 },
         { nombre: "Tarjeta Semanal 💳​", usd: 2.50 },
         { nombre: "Tarjeta Mensual 💳​", usd: 10.00 }

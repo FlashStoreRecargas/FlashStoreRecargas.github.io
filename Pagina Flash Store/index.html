@@ -344,13 +344,13 @@
 
         const texto = `*⚡ NUEVA ORDEN FLASH STORE*%0A` +
                       `------------------------------%0A` +
-                      `*Servicio:* ${juego} (${modoActual.toUpperCase()})%0A` +
-                      `*Paquete:* ${paqueteDesc}%0A` +
-                      `*${modoActual === 'id' ? 'ID' : 'Correo'}:* ${c1}%0A` +
-                      `*${modoActual === 'id' ? 'Nick' : 'Clave'}:* ${c2}%0A` +
+                      `*📂 Servicio:* ${juego} (${modoActual.toUpperCase()})%0A` +
+                      `*📦 Paquete:* ${paqueteDesc}%0A` +
+                      `*${modoActual === 'id' ? '🆔 ID' : '📬 Correo'}:* ${c1}%0A` +
+                      `*${modoActual === 'id' ? '👤 Nick' : '🔑 Clave'}:* ${c2}%0A` +
                       `------------------------------%0A` +
-                      `*Monto:* ${montoBS} BS (Tasa: ${TASA})%0A` +
-                      `*Referencia:* ${ref}%0A` +
+                      `*🇻🇪 Monto:* ${montoBS} BS (Tasa: ${TASA})%0A` +
+                      `*💳 Referencia:* ${ref}%0A` +
                       `------------------------------`;
 
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`, '_blank');

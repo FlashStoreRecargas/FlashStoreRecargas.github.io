@@ -4,21 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flash Store ⚡ | Recargas Instantáneas</title>
-    <link rel="stylesheet" href="estillos.css">
     <link rel="shortcut icon" href="https://fonts.gstatic.com/s/e/notoemoji/16.0/1fa99/32.png" type="image/x-icon">
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="Last-Modified" content="0">
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
+    <style>
+        :root {
+            --primary: #f4f5dc;
+            --dark: #121212;
+            --card: #1e1e1e;
+            --text: #ffffff;
+            --success: #25d366;
+        }
+
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--dark); color: var(--text); margin: 0; padding: 15px; }
+        .container { max-width: 450px; margin: auto; background: var(--card); padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #333; }
+        
+        header {
+            background: linear-gradient(135deg, #00D4FF 0%, #002B4F 70%);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 3px solid #faf5dc;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #faf5dc;
+        }
+
+        /* Cuadro de Pago Móvil */
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #2d2d35;
+        }
+
+        .info-pago {
+            border: 1px dashed var(--accent);
+            background: rgba(255, 158, 0, 0.05);
+        }
+
+        .info-pago h3 { color: var(--accent); margin-top: 0; }
+        .info-pago p { margin: 5px 0; font-size: 0.9rem; }
+        .btn-copy-all {
+            width: 100%;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        footer { text-align: center; color: #555; font-size: 0.8rem; }
+
+        .btn-copy-all:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* Selector de Tipo */
+        .selector-tipo { display: flex; gap: 10px; margin-bottom: 20px; }
+        .selector-tipo button { flex: 1; padding: 12px; cursor: pointer; border: none; border-radius: 10px; background: #333; color: white; transition: 0.3s; font-weight: bold; }
+        .selector-tipo button.active { background: var(--primary); box-shadow: 0 0 15px rgba(243, 156, 18, 0.4); color: #000; }
+
+        /* Formulario */
+        label { display: block; margin-top: 10px; font-size: 0.85em; color: #aaa; margin-left: 5px; }
+        input, select { width: 100%; padding: 12px; margin: 5px 0 15px 0; border-radius: 8px; border: 1px solid #444; background: #252525; color: white; box-sizing: border-box; outline: none; transition: 0.3s; }
+        input:focus, select:focus { border-color: var(--primary); }
+        
+        /* Visualización de Precio */
+        .price-display { background: #002b4f; padding: 15px; border-radius: 12px; text-align: center; margin: 10px 0; border: 1px dashed var(--primary); }
+        .total-bs { display: block; font-size: 1.8em; color: var(--primary); font-weight: bold; }
+        .total-usd { color: #888; font-size: 0.9em; }
+
+        .btn-whatsapp { width: 100%; background: var(--success); color: white; border: none; padding: 16px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1em; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
+        .btn-whatsapp:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        .tasa-flotante { text-align: center; font-size: 0.8em; color: #666; margin-top: 15px; }
+    </style>
 </head>
 <body>
 
     <header>
         <div class="logo">FLASH STORE ⚡</div>
     </header>
-
-    <div class="container">
-        <div class="card info-pago">
+<br>
+<div class="container">
+    <div class="card info-pago">
             <h3>💎 Datos de Pago Móvil</h3>
             <div id="datos-transferencia">
                 <p><b>Banco:</b> 0102 Venezuela</p>
@@ -28,67 +113,251 @@
             <button type="button" class="btn-copy-all" onclick="copiarTodo()">
             📋 Copiar datos
             </button>
-        </div>
-
-        <div class="card">
-            <h2>Panel de Recargas</h2>
-            <form id="orderForm">
-                
-                <div class="form-group">
-                    <label>Tipo de Juego o Servicio</label>
-                    <select id="categoria" onchange="cambiarProductos()">
-                        <option value="Free">Free Fire</option>
-                        <option value="Blood">Blood Strike</option>
-                        <option value="Delta">Delta Force</option>
-                        <option value="Roblox">Roblox</option>
-                        <option value="RC">Rio Rise</option>
-                        <option value="TTC">Tiktok</option>
-                        <option value="Plataformas">Otras Plataformas</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Selecciona el Producto</label>
-                    <select id="producto" onchange="calcularTotal()">
-                        </select>
-                </div>
-
-                <div class="form-group">
-                    <label>ID del Jugador o Correo de Cuenta</label>
-                    <input type="text" id="userID" placeholder="Ej: 12345678 o usuario@gmail.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Nick / Nombre en el Juego</label>
-                    <input type="text" id="playerNick" placeholder="Confirma tu nombre en el juego" required>
-                    <small style="color: var(--primary); font-size: 0.7rem;">⚠️ Asegúrate de que coincida con tu ID</small>
-                </div>
-
-                <div class="form-group">
-                    <label>Referencia de Pago</label>
-                    <input type="text" id="referencia" placeholder="Últimos 6 dígitos" required>
-                </div>
-
-                <div class="resumen-pago">
-                    <span>Total a Transferir:</span>
-                    <span class="precio-grande"><span id="totalBs">0,00</span> Bs</span>
-                    <small>Tasa: <span id="tasaValue"></span> Bs/$</small>
-                </div>
-
-                <button type="button" class="btn-ws" onclick="enviarWhatsApp()">
-                    🚀 Enviar Pedido vía WhatsApp
-                </button>
-            </form>
-        </div>
     </div>
 
-    <footer>&copy; 2026 Flash Store ⚡ - Tu rapidez es nuestra meta.</footer>
-    <script src="app.js"></script>
-    <script>
-        let CONFIG = {
-            tasa: 560, 
-            whatsapp: "584162342319"
-        };
-    </script>
+    <div class="selector-tipo">
+        <button id="btn-id" class="active" onclick="setMode('id')">POR ID</button>
+        <button id="btn-interna" onclick="setMode('interna')">INTERNA</button>
+    </div>
+
+    <form id="orderForm">
+        <label>Selecciona el Producto</label>
+        <select id="juego" onchange="actualizarPaquetes()">
+            </select>
+
+        <div id="campos-dinamicos">
+            <label id="label-c1">ID del Jugador</label>
+            <input type="text" id="campo1" placeholder="Ej: 123456789" required>
+            
+            <label id="label-c2">Nombre de Usuario</label>
+            <input type="text" id="campo2" placeholder="Ej: ProPlayer22" required>
+            
+            <label>Selecciona el Paquete</label>
+            <select id="paquete-select" onchange="calcularMonto()">
+                <option value="">-- Primero elige un juego --</option>
+            </select>
+            
+            <label>Referencia Bancaria (6 dígitos)</label>
+            <input type="number" id="referencia" placeholder="000000" oninput="limitRef(this)" required>
+        </div>
+
+        <div class="price-display">
+            <span>Total a Transferir:</span>
+            <span class="total-bs" id="total-bs">0.00 BS</span>
+            <span class="total-usd" id="total-usd">0.00 USD</span>
+        </div>
+
+        <button type="button" class="btn-whatsapp" onclick="enviarPedido()">
+            ENVIAR PEDIDO POR WHATSAPP
+        </button>
+    </form>
+
+    <div class="tasa-flotante">
+        Tasa de cambio: <span id="tasa-text">0.00</span> BS/USD
+    </div>
+</div>
+<br>
+<footer>&copy; 2026 Flash Store ⚡ - Tu rapidez es nuestra meta.</footer>
+
+<script>
+    // ==========================================
+    // CONFIGURACIÓN DE TU TIENDA
+    // ==========================================
+    const TASA = 560; // <--- CAMBIA LA TASA AQUÍ
+    const WHATSAPP_NUMBER = "584162342319"; // <--- TU NÚMERO (Sin el +)
+
+    const PRODUCTOS = {
+        id: {
+            "Free Fire": [
+                { desc: "110 💎", usd: 1.00 },
+                { desc: "220 💎", usd: 2.00 },
+                { desc: "341 💎", usd: 3.00 },
+                { desc: "572 💎", usd: 5.00 },
+                { desc: "1060 💎", usd: 10.00 },
+                { desc: "2398 💎", usd: 20.00 },
+                { desc: "6160 💎", usd: 50.00 },
+                { desc: "Tarjeta B💳", usd: 0.50 },
+                { desc: "Tarjeta S💳", usd: 2.00 },
+                { desc: "Tarjeta M💳", usd: 10.00 }
+            ],
+            "Blood Strike": [
+                { desc: "116 💰", usd: 1.00 },
+                { desc: "232 💰", usd: 2.00 },
+                { desc: "352 💰", usd: 3.00 },
+                { desc: "594 💰", usd: 5.00 },
+                { desc: "1210 💰", usd: 10.00 },
+                { desc: "2486 💰", usd: 20.00 },
+                { desc: "6380 💰", usd: 50.00 },
+                { desc: "Pase Elite 📦", usd: 4.00 },
+                { desc: "Pase Premium 📦", usd: 9.00 }
+            ],
+            "Delta Force": [
+                { desc: "20 Delta Coins", usd: 0.30 },
+                { desc: "33 Delta Coins", usd: 0.50 },
+                { desc: "66 Delta Coins", usd: 1.00 },
+                { desc: "352 Delta Coins", usd: 4.90 },
+                { desc: "507 Delta Coins", usd: 6.80 },
+                { desc: "826 Delta Coins", usd: 9.70 },
+                { desc: "1628 Delta Coins", usd: 19.40 },
+                { desc: "2178 Delta Coins", usd: 24.30 },
+                { desc: "4346 Delta Coins", usd: 48.50 },
+                { desc: "8910 Delta Coins", usd: 97.00 },
+                { desc: "17820 Delta Coins", usd: 194.00 },
+                { desc: "26730 Delta Coins", usd: 291.00 },
+                { desc: "Suministro de Competicion", usd: 0.70 },
+                { desc: "Suministro de Competicion-Avanzado", usd: 2.10 }
+            ]
+        },
+        interna: {
+            "Roblox": [
+                { desc: "80 Robux", usd: 1.00 },
+                { desc: "160 Robux", usd: 2.00 },
+                { desc: "400 Robux", usd: 5.00 },
+                { desc: "800 Robux", usd: 10.00 },
+                { desc: "1.700 Robux", usd: 20.00 },
+                { desc: "4.500 Robux", usd: 50.00 },
+                { desc: "10.000 Robux", usd: 100.00 },
+                { desc: "22.000 Robux", usd: 200.00 },
+                { desc: "Roblox Premium", usd: 10.00 }
+            ],
+            "TikTok": [
+                { desc: "Tiktok Coins (05)", usd: 0.08 },
+                { desc: "Tiktok Coins (70)", usd: 1.09 },
+                { desc: "Tiktok Coins (350)", usd: 5.45 },
+                { desc: "Tiktok Coins (700)", usd: 10.91 },
+                { desc: "Tiktok Coins (1400)", usd: 21.80 },
+                { desc: "Tiktok Coins (3500)", usd: 54.50 },
+                { desc: "Tiktok Coins (7000)", usd: 108.99 },
+                { desc: "Tiktok Coins (17500)", usd: 272.47 }
+            ],
+            "Netflix": [
+                { desc: "Plan Basico - 1 Pantalla", usd: 3.99 },
+                { desc: "Plan Estandar - 2 Pantallas", usd: 5.99 },
+                { desc: "Plan Premium - 4 Pantallas", usd: 7.99 }
+            ],
+            "Disney+": [
+                { desc: "Plan Estandar - 2 Pantallas", usd: 12.49 },
+                { desc: "Plan Premium - 4 Pantallas", usd: 17.99 },
+            ],
+            "Spotify": [
+                { desc: "Spotify Premium", usd: 6.50 }
+            ],
+            "Youtube": [
+                { desc: "Youtube Premium", usd: 14.00 }
+            ],
+            "Canva": [
+                { desc: "Canva Pro (Mensual)", usd: 6.50 }
+            ],
+        }
+    };
+
+    let modoActual = 'id';
+
+    // ==========================================
+    // LÓGICA DEL SISTEMA (No tocar si no sabes JS)
+    // ==========================================
+
+    document.getElementById('tasa-text').innerText = TASA.toFixed(2);
+
+    function setMode(modo) {
+        modoActual = modo;
+        document.getElementById('btn-id').classList.toggle('active', modo === 'id');
+        document.getElementById('btn-interna').classList.toggle('active', modo === 'interna');
+        
+        // Cambiar etiquetas
+        document.getElementById('label-c1').innerText = modo === 'id' ? "ID del Jugador" : "Correo o Usuario";
+        document.getElementById('label-c2').innerText = modo === 'id' ? "Nombre de Usuario (Nick)" : "Contraseña de Cuenta";
+        document.getElementById('campo2').type = modo === 'id' ? "text" : "password";
+
+        const juegoSelect = document.getElementById('juego');
+        juegoSelect.innerHTML = '<option value="" disabled selected>-- Selecciona --</option>';
+        
+        Object.keys(PRODUCTOS[modo]).forEach(juego => {
+            let opt = document.createElement('option');
+            opt.value = juego;
+            opt.innerText = juego;
+            juegoSelect.appendChild(opt);
+        });
+
+        actualizarPaquetes();
+    }
+
+    function actualizarPaquetes() {
+        const juego = document.getElementById('juego').value;
+        const pqSelect = document.getElementById('paquete-select');
+        pqSelect.innerHTML = '<option value="" disabled selected>-- Cantidad --</option>';
+
+        if (juego && PRODUCTOS[modoActual][juego]) {
+            PRODUCTOS[modoActual][juego].forEach(p => {
+                let opt = document.createElement('option');
+                opt.value = p.usd;
+                opt.dataset.desc = p.desc;
+                opt.innerText = `${p.desc} ($${p.usd.toFixed(2)})`;
+                pqSelect.appendChild(opt);
+            });
+        }
+        calcularMonto();
+    }
+
+    function calcularMonto() {
+        const usd = parseFloat(document.getElementById('paquete-select').value) || 0;
+        const bs = usd * TASA;
+        document.getElementById('total-bs').innerText = bs.toLocaleString('es-VE', {minimumFractionDigits: 2}) + " BS";
+        document.getElementById('total-usd').innerText = usd.toFixed(2) + " USD";
+    }
+
+    function limitRef(input) {
+        if (input.value.length > 6) input.value = input.value.slice(0, 6);
+    }
+
+    function copiarTodo() {
+        const info = `DATOS FLASH STORE ⚡\nBanco: 0102 Venezuela\nCI: 32187877\nTelf: 04162342319`;
+    
+        navigator.clipboard.writeText(info).then(() => {
+            // Mostrar aviso visual
+            const toast = document.createElement('div');
+            toast.className = 'toast-copy';
+            toast.innerText = '✅ Datos copiados al portapapeles';
+            document.body.appendChild(toast);
+
+            // Borrar aviso después de 2 segundos
+            setTimeout(() => {
+                toast.remove();
+            }, 2000);
+        });
+    }
+
+    function enviarPedido() {
+        const juego = document.getElementById('juego').value;
+        const c1 = document.getElementById('campo1').value;
+        const c2 = document.getElementById('campo2').value;
+        const pqNode = document.getElementById('paquete-select');
+        const ref = document.getElementById('referencia').value;
+
+        if (!juego || !c1 || !c2 || !pqNode.value || ref.length < 6) {
+            alert("⚠️ Por favor rellena todos los campos correctamente (Ref debe ser de 6 dígitos)");
+            return;
+        }
+
+        const paqueteDesc = pqNode.options[pqNode.selectedIndex].dataset.desc;
+        const montoBS = (parseFloat(pqNode.value) * TASA).toFixed(2);
+
+        const texto = `*⚡ NUEVA ORDEN FLASH STORE*%0A` +
+                      `------------------------------%0A` +
+                      `*Servicio:* ${juego} (${modoActual.toUpperCase()})%0A` +
+                      `*Paquete:* ${paqueteDesc}%0A` +
+                      `*${modoActual === 'id' ? 'ID' : 'Correo'}:* ${c1}%0A` +
+                      `*${modoActual === 'id' ? 'Nick' : 'Clave'}:* ${c2}%0A` +
+                      `------------------------------%0A` +
+                      `*Monto:* ${montoBS} BS (Tasa: ${TASA})%0A` +
+                      `*Referencia:* #${ref}%0A` +
+                      `------------------------------`;
+
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`, '_blank');
+    }
+
+    // Iniciar con modo ID
+    setMode('id');
+</script>
 </body>
 </html>

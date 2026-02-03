@@ -75,6 +75,27 @@
             color: #000;
         }
 
+        .promo-style {
+            display: none; /* Se activa por JS */
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            border: 1px solid #ff0000;
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+            animation: promo-pulse 1.5s infinite;
+        }
+
+        @keyframes promo-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
         /* Selector de Tipo */
         .selector-tipo { display: flex; gap: 10px; margin-bottom: 20px; }
         .selector-tipo button { flex: 1; padding: 12px; cursor: pointer; border: none; border-radius: 10px; background: #333; color: white; transition: 0.3s; font-weight: bold; }
@@ -103,6 +124,11 @@
     </header>
 <br>
 <div class="container">
+
+    <div id="promo-banner" class="promo-style">
+        🎁 ¡Tus recargas de Free Fire vienen con un 20% extra de regalo!
+    </div>
+
     <div class="card info-pago">
             <h3>💎 Datos de Pago Móvil</h3>
             <div id="datos-transferencia">
@@ -126,16 +152,16 @@
             </select>
 
         <div id="campos-dinamicos">
+            <label>Selecciona el Paquete</label>
+            <select id="paquete-select" onchange="calcularMonto()">
+                <option value="">-- Primero elige un juego --</option>
+            </select>
+
             <label id="label-c1">ID del Jugador</label>
             <input type="text" id="campo1" placeholder="Ej: 123456789" required>
             
             <label id="label-c2">Nombre de Usuario</label>
             <input type="text" id="campo2" placeholder="Ej: ProPlayer22" required>
-            
-            <label>Selecciona el Paquete</label>
-            <select id="paquete-select" onchange="calcularMonto()">
-                <option value="">-- Primero elige un juego --</option>
-            </select>
             
             <label id="label-ref">Referencia Bancaria (6 dígitos)</label>
             <input type="number" id="referencia" placeholder="000000" oninput="limitRef(this)" required>
@@ -294,6 +320,13 @@
 
     function actualizarPaquetes() {
         const juego = document.getElementById('juego').value;
+        const banner = document.getElementById('promo-banner');
+        if (juego === "Free Fire") {
+            banner.style.display = "block";
+        } 
+        else {
+            banner.style.display = "none";
+        }
         const pqSelect = document.getElementById('paquete-select');
         pqSelect.innerHTML = '<option value="" disabled selected>-- Cantidad --</option>';
 

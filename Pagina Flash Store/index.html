@@ -450,6 +450,7 @@
     };
 
     try {
+        const response = await fetch(url, options);
         const result = await response.json();
 
         // Aquí adaptamos la respuesta según lo que devuelva cada API

@@ -457,25 +457,26 @@
 
     try {
         const response = await fetch(url, options);
-        const result = await response.json();
 
-        // Aquí adaptamos la respuesta según lo que devuelva cada API
-        // Normalmente vienen en campos como .nickname, .name o .data.name
-        const nombreEncontrado = result.nickname || result.name || (result.data ? result.data.name : null);
-
-        if (nombreEncontrado) {
-            campoNombre.value = nombreEncontrado;
-            campoNombre.style.borderColor = "#27ae60";
-            campoNombre.readOnly = true; 
-        } else {
-            campoNombre.value = "";
-            campoNombre.placeholder = "❌ No se encontró el nombre. Escríbelo manual.";
-            campoNombre.readOnly = false; // Si falla la API, dejamos que el cliente escriba
+        // 1. Verificamos si la respuesta es exitosa (Status 200)
+        if (!response.ok) {
+            throw new Error("El servidor no respondió correctamente");
         }
-    } catch (error) {
-        console.error("Error API:", error);
+
+        // 2. Verificamos si lo que llegó es realmente un JSON
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+            throw new Error("La API devolvió HTML en lugar de JSON (Posible error de API Key)");
+        }
+
+        const result = await response.json();
+        // ... resto de tu lógica para poner el nombre
+    } 
+    catch (error) {
+        console.error("Error detectado:", error);
+        // Si falla, permitimos que el usuario escriba su nombre
         campoNombre.value = "";
-        campoNombre.placeholder = "⚠️ Error de conexión. Escríbelo manual.";
+        campoNombre.placeholder = "Escribe tu nombre manualmente";
         campoNombre.readOnly = false;
     }
 }

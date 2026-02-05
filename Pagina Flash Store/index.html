@@ -413,7 +413,7 @@
     const campoNombre = document.getElementById('campo2');
     const apiKey = '5ec53e18b6msh48421adf53d62c2p159ed0jsn7b11936ac290';
     const host = 'check-id-game1.p.rapidapi.com';
-    const url = 'rapidapi.com';
+    const url = 'https://${host}/api/game/free-fire-global-2?id=${idPlayer}';
 
     if (!idPlayer || modoActual !== 'id') return;
 

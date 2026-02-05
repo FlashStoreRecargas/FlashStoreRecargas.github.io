@@ -427,10 +427,10 @@
     // --- Opción 3: Sistema de Puntos con Seguridad ---
     function calcularPuntos(montoUSD) {
         let porcentaje = 0;
-        if (montoUSD >= 1 && montoUSD <= 3) porcentaje = 0.60;
-        else if (montoUSD >= 4 && montoUSD <= 6) porcentaje = 0.25;
-        else if (montoUSD >= 7 && montoUSD <= 9) porcentaje = 0.10;
-        else if (montoUSD >= 10) porcentaje = 0.05;
+        if (montoUSD >= 1 && montoUSD <= 3) porcentaje = 0.05;
+        else if (montoUSD >= 4 && montoUSD <= 6) porcentaje = 0.15;
+        else if (montoUSD >= 7 && montoUSD <= 9) porcentaje = 0.25;
+        else if (montoUSD >= 10) porcentaje = 0.35;
 
         const puntos = Math.floor(montoUSD * porcentaje * 100);
     

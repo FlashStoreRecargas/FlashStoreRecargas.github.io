@@ -168,8 +168,8 @@
             <label id="label-c1">ID del Jugador</label>
             <input type="text" id="campo1" placeholder="Ej: 123456789" onblur="validarID()" required>
             
-            <label id="label-c2">Nombre de Usuario (Validado)</label>
-            <input type="text" id="campo2" placeholder="Buscando nombre ..." readonly required>
+            <label id="label-c2">Nombre de Usuario</label>
+            <input type="text" id="campo2" placeholder="Ej: ᶍ̸┊ㅤRami¶ㅤ★" required>
             
             <label id="label-ref">Referencia Bancaria (6 dígitos)</label>
             <input type="number" id="referencia" placeholder="000000" oninput="limitRef(this)" required>
@@ -407,79 +407,6 @@
         });
     }
 
-    async function validarID() {
-    const idPlayer = document.getElementById('campo1').value;
-    const juego = document.getElementById('juego').value;
-    const campoNombre = document.getElementById('campo2');
-    const apiKey = '5ec53e18b6msh48421adf53d62c2p159ed0jsn7b11936ac290';
-    const host = 'check-id-game1.p.rapidapi.com';
-    const url = 'https://${host}/api/game/free-fire-global-2?id=${idPlayer}';
-
-    if (!idPlayer || modoActual !== 'id') return;
-
-    campoNombre.value = "⏳ Verificando en " + juego + "...";
-
-    // --- LÓGICA DE DETECCIÓN DE JUEGO ---
-    switch (juego) {
-        case "Free Fire":
-        const data = null;
-
-        const xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
-
-        xhr.addEventListener('readystatechange', function () {
-	        if (this.readyState === this.DONE) {
-		        console.log(this.responseText);
-	        }
-        });
-
-        xhr.setRequestHeader('x-rapidapi-url', 'https://${host}/api/game/free-fire-global-2?id=${idPlayer}');
-        xhr.setRequestHeader('x-rapidapi-key', '5ec53e18b6msh48421adf53d62c2p159ed0jsn7b11936ac290');
-        xhr.setRequestHeader('x-rapidapi-host', 'check-id-game1.p.rapidapi.com');
-        break;
-        
-        default:
-            campoNombre.value = "⚠️ API no disponible para este juego";
-            campoNombre.readOnly = false; // Permitir escribir si no hay API
-            return;
-    }
-
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-url': url,
-            'x-rapidapi-key': apiKey,
-            'x-rapidapi-host': host
-        }
-    };
-
-    try {
-        const response = await fetch(url, options);
-
-        // 1. Verificamos si la respuesta es exitosa (Status 200)
-        if (!response.ok) {
-            throw new Error("El servidor no respondió correctamente");
-        }
-
-        // 2. Verificamos si lo que llegó es realmente un JSON
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-            throw new Error("La API devolvió HTML en lugar de JSON (Posible error de API Key)");
-        }
-
-        const result = await response.json();
-        // ... resto de tu lógica para poner el nombre
-    } 
-    catch (error) {
-        console.error("Error detectado:", error);
-        // Si falla, permitimos que el usuario escriba su nombre
-        campoNombre.value = "";
-        campoNombre.placeholder = "Escribe tu nombre manualmente";
-        campoNombre.readOnly = false;
-    }
-}
-
-
     // CONFIGURACIÓN DE PUNTOS Y HORARIO
     const HORA_APERTURA = 8; // 8 AM
     const HORA_CIERRE = 23; // 11 PM
@@ -522,7 +449,7 @@
     const historialSimulado = [
         "✅ Recarga de 310 Diamantes hace 2 min",
         "✅ Recarga de 80 Robux hace 5 min",
-        "✅ Recarga de 116 De Oro hace 10 min",
+        "✅ Recarga de 116 De Oro hace 12 min",
         "✅ Recarga de TikTok Coins hace 15 min"
     ];
 

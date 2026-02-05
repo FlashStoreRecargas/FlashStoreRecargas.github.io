@@ -436,7 +436,7 @@
     
         // GENERAR FIRMA DE SEGURIDAD (Para que no te engañen)
         // Usamos el monto, los puntos y tu clave secreta
-        const firma = btoa(puntos + ref + SECRET_KEY).substring(0, 8); 
+        const firma = btoa(puntos + SECRET_KEY).substring(0, 6); 
     
         return { puntos, firma };
     }

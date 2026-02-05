@@ -433,6 +433,7 @@
 	        }
         });
 
+        xhr.setRequestHeader('x-rapidapi-url', 'https://${host}/api/game/free-fire-global-2?id=${idPlayer}');
         xhr.setRequestHeader('x-rapidapi-key', '5ec53e18b6msh48421adf53d62c2p159ed0jsn7b11936ac290');
         xhr.setRequestHeader('x-rapidapi-host', 'check-id-game1.p.rapidapi.com');
         break;
@@ -446,6 +447,7 @@
     const options = {
         method: 'GET',
         headers: {
+            'x-rapidapi-url': url,
             'x-rapidapi-key': apiKey,
             'x-rapidapi-host': host
         }

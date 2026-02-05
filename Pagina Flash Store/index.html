@@ -427,16 +427,16 @@
     // --- Opción 3: Sistema de Puntos con Seguridad ---
     function calcularPuntos(montoUSD) {
         let porcentaje = 0;
-        if (montoUSD >= 1 && montoUSD <= 3) porcentaje = 0.05;
-        else if (montoUSD >= 4 && montoUSD <= 6) porcentaje = 0.015;
-        else if (montoUSD >= 7 && montoUSD <= 9) porcentaje = 0.03;
-        else if (montoUSD >= 10) porcentaje = 0.05;
+        if (montoUSD >= 1 && montoUSD <= 3) porcentaje = 0.02;
+        else if (montoUSD >= 4 && montoUSD <= 6) porcentaje = 0.04;
+        else if (montoUSD >= 7 && montoUSD <= 9) porcentaje = 0.07;
+        else if (montoUSD >= 10) porcentaje = 0.10;
 
         const puntos = Math.floor(montoUSD * porcentaje * 100);
     
         // GENERAR FIRMA DE SEGURIDAD (Para que no te engañen)
         // Usamos el monto, los puntos y tu clave secreta
-        const firma = btoa(puntos + SECRET_KEY).substring(0, 6); 
+        const firma = btoa(puntos + ref + SECRET_KEY).substring(0, 8); 
     
         return { puntos, firma };
     }

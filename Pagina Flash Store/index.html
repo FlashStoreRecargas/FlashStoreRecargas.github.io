@@ -415,18 +415,25 @@
     if (!idPlayer || modoActual !== 'id') return;
 
     campoNombre.value = "⏳ Verificando en " + juego + "...";
-    
-    // Configuración por defecto
-    let url = "";
-    let host = "";
-    let apiKey = "5ec53e18b6msh48421adf53d62c2p159ed0jsn7b11936ac290"; // Tu clave de RapidAPI
 
     // --- LÓGICA DE DETECCIÓN DE JUEGO ---
     switch (juego) {
         case "Free Fire":
-            url = `https://check-id-game1.p.rapidapi.com/api/game/free-fire-global-2?id=10228493840'`;
-            host = "check-id-game1.p.rapidapi.com";
+        const data = null;
+
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+    xhr.addEventListener('readystatechange', function () {
+	    if (this.readyState === this.DONE) {
+	    	console.log(this.responseText);
+	    }
+    });
+    xhr.open('GET', 'https://check-id-game1.p.rapidapi.com/api/game/free-fire-global-2?id=10228493840');
+    xhr.setRequestHeader('x-rapidapi-key', '5ec53e18b6msh48421adf53d62c2p159ed0jsn7b11936ac290');
+    xhr.setRequestHeader('x-rapidapi-host', 'check-id-game1.p.rapidapi.com');
+    xhr.send(data);
             break;
+
         case "Blood Strike":
             url = `https://rapidapi.com/okebagus426/api/check-id-game1id=${idPlayer}`;
             host = "rapidapi.com/okebagus426/api/check-id-game1";

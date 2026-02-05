@@ -115,13 +115,22 @@
         .btn-whatsapp:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
         .tasa-flotante { text-align: center; font-size: 0.8em; color: #666; margin-top: 15px; }
+
+        .status-online { background: #27ae6022; color: #27ae60; border: 1px solid #27ae60; }
+        .status-offline { background: #e74c3c22; color: #e74c3c; border: 1px solid #e74c3c; }
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo">FLASH STORE ⚡</div>
     </header>
+    <div id="status-bar" style="text-align: center; padding: 10px; border-radius: 10px; margin-bottom: 10px; font-weight: bold;">
+    <span id="status-text">Cargando estado...</span>
+</div>
+
+<div id="recent-orders" style="background: rgba(0,0,0,0.3); padding: 8px; border-radius: 8px; font-size: 0.8em; color: #aaa; text-align: center; margin-bottom: 15px;">
+    <span id="order-ticker">Verificando últimas recargas...</span>
+</div>
 <br>
 <div class="container">
     <div class="card info-pago">
@@ -395,12 +404,75 @@
         });
     }
 
+    // CONFIGURACIÓN DE PUNTOS Y HORARIO
+    const HORA_APERTURA = 8; // 8 AM
+    const HORA_CIERRE = 23; // 11 PM
+    const SECRET_KEY = "...."; // Tu clave secreta para verificar puntos
+
+    // --- Opción 7: Verificación de Horario y Estado ---
+    function revisarEstado() {
+        const ahora = new Date().getHours();
+        const barra = document.getElementById('status-bar');
+        const texto = document.getElementById('status-text');
+    
+        if (ahora >= HORA_APERTURA && ahora < HORA_CIERRE) {
+            barra.className = "status-online";
+            texto.innerText = "🟢 SERVIDOR ONLINE (Recargas activas)";
+        } else {
+            barra.className = "status-offline";
+            texto.innerText = "🔴 FUERA DE HORARIO (Procesamos mañana)";
+        }
+    }
+
+    // --- Opción 3: Sistema de Puntos con Seguridad ---
+    function calcularPuntos(montoUSD) {
+        let porcentaje = 0;
+        if (montoUSD >= 1 && montoUSD <= 3) porcentaje = 0.60;
+        else if (montoUSD >= 4 && montoUSD <= 6) porcentaje = 0.25;
+        else if (montoUSD >= 7 && montoUSD <= 9) porcentaje = 0.10;
+        else if (montoUSD >= 10) porcentaje = 0.05;
+
+        const puntos = Math.floor(montoUSD * porcentaje * 100);
+    
+        // GENERAR FIRMA DE SEGURIDAD (Para que no te engañen)
+        // Usamos el monto, los puntos y tu clave secreta
+        const firma = btoa(puntos + SECRET_KEY).substring(0, 6); 
+    
+        return { puntos, firma };
+    }
+
+    // --- Opción 5: Simulador de Prueba Social (Historial) ---
+    const historialSimulado = [
+        "✅ Recarga de 110 Diamantes hace 2 min",
+        "✅ Recarga de 80 Robux hace 5 min",
+        "✅ Recarga de 530 Diamantes hace 12 min",
+        "✅ Recarga de TikTok Coins hace 15 min"
+    ];
+
+    function rotarHistorial() {
+        const ticker = document.getElementById('order-ticker');
+        let i = 0;
+        setInterval(() => {
+            ticker.innerText = historialSimulado[i];
+            i = (i + 1) % historialSimulado.length;
+        }, 4000);
+    }
+
     function enviarPedido() {
         const juego = document.getElementById('juego').value;
         const c1 = document.getElementById('campo1').value;
         const c2 = document.getElementById('campo2').value;
         const pqNode = document.getElementById('paquete-select');
         const ref = document.getElementById('referencia').value;
+         // ... (tus variables de juego, id, monto, etc)
+        const precioUSD = parseFloat(document.getElementById('paquete-select').value) || 0;
+        const infoPuntos = calcularPuntos(precioUSD);
+
+        const textoPuntos = `%0A%0A✨ *PUNTOS GANADOS:* ${infoPuntos.puntos}` +
+                            `%0A🔐 *VERIFICACIÓN:* ${infoPuntos.firma}`;
+
+        // Al final lo sumas a tu mensaje de WhatsApp:
+        // const url = `...text=${mensajeBase}${textoPuntos}`;
 
         if (!juego || !c1 || !c2 || !pqNode.value || ref.length < 6) {
             alert("⚠️ Por favor rellena todos los campos correctamente");
@@ -423,6 +495,10 @@
 
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`, '_blank');
     }
+
+    // Ejecutar al cargar la página
+    revisarEstado();
+    rotarHistorial();
 
     // Iniciar con modo ID
     setMode('id');

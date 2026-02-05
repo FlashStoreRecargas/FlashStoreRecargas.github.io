@@ -124,6 +124,7 @@
     <header>
         <div class="logo">FLASH STORE ⚡</div>
     </header>
+    <br>
     <div id="status-bar" style="text-align: center; padding: 10px; border-radius: 10px; margin-bottom: 10px; font-weight: bold;">
     <span id="status-text">Cargando estado...</span>
 </div>
@@ -131,7 +132,6 @@
 <div id="recent-orders" style="background: rgba(0,0,0,0.3); padding: 8px; border-radius: 8px; font-size: 0.8em; color: #aaa; text-align: center; margin-bottom: 15px;">
     <span id="order-ticker">Verificando últimas recargas...</span>
 </div>
-<br>
 <div class="container">
     <div class="card info-pago">
             <h3>💎 Datos de Pago Móvil</h3>
@@ -491,7 +491,8 @@
                       `------------------------------%0A` +
                       `*🇻🇪 Monto:* ${montoBS} BS (Tasa: ${TASA})%0A` +
                       `*💳 Referencia:* ${ref}%0A` +
-                      `------------------------------`;
+                      `------------------------------`
+                      const url = `...text=${mensajeBase}${textoPuntos}`;
 
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`, '_blank');
     }

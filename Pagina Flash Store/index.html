@@ -492,10 +492,12 @@
                       `*🇻🇪 Monto:* ${montoBS} BS (Tasa: ${TASA})%0A` +
                       `*💳 Referencia:* ${ref}%0A` +
                       `------------------------------`
-                      `* Puntos:* ${mensajeBase}${textoPuntos}` +
-                      `------------------------------` ;
+                      `✨ *PUNTOS GANADOS:* ${infoPuntos.puntos}%0A` +
+                      `🔐 *VERIFICACIÓN:* ${infoPuntos.firma}`;
 
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`, '_blank');
+        // Usamos directamente la variable 'texto'
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`;
+        window.open(url, '_blank');
     }
 
     // Ejecutar al cargar la página

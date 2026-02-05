@@ -416,11 +416,15 @@
 
     campoNombre.value = "⏳ Verificando en " + juego + "...";
     
+    // Configuración por defecto
+    let url = "";
+    let host = "";
+    let apiKey = "5ec53e18b6msh48421adf53d62c2p159ed0jsn7b11936ac290"; // Tu clave de RapidAPI
+
     // --- LÓGICA DE DETECCIÓN DE JUEGO ---
     switch (juego) {
         case "Free Fire":
             url = `https://check-id-game1.p.rapidapi.com/api/game/free-fire-global-2?id=10228493840'`;
-            apiKey = '5ec53e18b6msh48421adf53d62c2p159ed0jsn7b11936ac290';
             host = "check-id-game1.p.rapidapi.com";
             break;
         case "Blood Strike":

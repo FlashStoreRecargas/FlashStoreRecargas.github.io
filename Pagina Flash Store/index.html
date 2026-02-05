@@ -166,10 +166,10 @@
             </select>
 
             <label id="label-c1">ID del Jugador</label>
-            <input type="text" id="campo1" placeholder="Ej: 123456789" required>
+            <input type="text" id="campo1" placeholder="Ej: 123456789" onblur="validarID()" required>
             
-            <label id="label-c2">Nombre de Usuario</label>
-            <input type="text" id="campo2" placeholder="Ej: ProPlayer22" required>
+            <label id="label-c2">Nombre de Usuario (Validado)</label>
+            <input type="text" id="campo2" placeholder="Buscando nombre ..." readonly required>
             
             <label id="label-ref">Referencia Bancaria (6 dígitos)</label>
             <input type="number" id="referencia" placeholder="000000" oninput="limitRef(this)" required>
@@ -353,6 +353,9 @@
     }
 
     function actualizarPaquetes() {
+        document.getElementById('campo1').value = ""; 
+        document.getElementById('campo2').value = "";
+        document.getElementById('campo2').readOnly = true; 
         const juego = document.getElementById('juego').value;
         const banner = document.getElementById('promo-banner');
         if (juego === "Free Fire") {
@@ -403,6 +406,74 @@
             }, 2000);
         });
     }
+
+    async function validarID() {
+    const idPlayer = document.getElementById('campo1').value;
+    const juego = document.getElementById('juego').value;
+    const campoNombre = document.getElementById('campo2');
+
+    if (!idPlayer || modoActual !== 'id') return;
+
+    campoNombre.value = "⏳ Verificando en " + juego + "...";
+    
+    // Configuración por defecto
+    let url = "";
+    let host = "";
+    let apiKey = "5ec53e18b6msh48421adf53d62c2p159ed0jsn7b11936ac290"; // Tu clave de RapidAPI
+
+    // --- LÓGICA DE DETECCIÓN DE JUEGO ---
+    switch (juego) {
+        case "Free Fire":
+            url = `https://check-id-game1.p.rapidapi.com/api/game/free-fire-global-2?id=10228493840'`;
+            host = "check-id-game1.p.rapidapi.com";
+            break;
+        case "Blood Strike":
+            url = `https://rapidapi.com/okebagus426/api/check-id-game1id=${idPlayer}`;
+            host = "rapidapi.com/okebagus426/api/check-id-game1";
+            break;
+        case "Delta Force":
+            url = `https://cod-player-checker.p.rapidapi.com/validate/${idPlayer}`;
+            host = "cod-player-checker.p.rapidapi.com";
+            break;
+        default:
+            campoNombre.value = "⚠️ API no disponible para este juego";
+            campoNombre.readOnly = false; // Permitir escribir si no hay API
+            return;
+    }
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': apiKey,
+            'x-rapidapi-host': host
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        // Aquí adaptamos la respuesta según lo que devuelva cada API
+        // Normalmente vienen en campos como .nickname, .name o .data.name
+        const nombreEncontrado = result.nickname || result.name || (result.data ? result.data.name : null);
+
+        if (nombreEncontrado) {
+            campoNombre.value = nombreEncontrado;
+            campoNombre.style.borderColor = "#27ae60";
+            campoNombre.readOnly = true; 
+        } else {
+            campoNombre.value = "";
+            campoNombre.placeholder = "❌ No se encontró el nombre. Escríbelo manual.";
+            campoNombre.readOnly = false; // Si falla la API, dejamos que el cliente escriba
+        }
+    } catch (error) {
+        console.error("Error API:", error);
+        campoNombre.value = "";
+        campoNombre.placeholder = "⚠️ Error de conexión. Escríbelo manual.";
+        campoNombre.readOnly = false;
+    }
+}
+
 
     // CONFIGURACIÓN DE PUNTOS Y HORARIO
     const HORA_APERTURA = 8; // 8 AM
